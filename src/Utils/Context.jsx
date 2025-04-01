@@ -4,24 +4,26 @@ import React, { createContext, useEffect, useState } from 'react'
 export const productcontext=createContext();
 const Context = (props) => {
   
-  const[products,setproducts]= useState(null);
+  const[products,setproducts]= useState( JSON.parse(localStorage.getItem("products")) || null);
   
-    const getproducts=async()=>{
-        try {
-            const {data}=await axios("/products");     // axios("/products") sends a request to get data from the /products endpoint (URL). ,, await tells JavaScript to wait until the data is received before moving to the next line.,,,, data holds the actual product information.
-            setproducts(data);                         // now the products will hold the data of products coming from axios
-        } catch (error) {
+//     const getproducts=async()=>{
+//         try {
+//             const {data}=await axios("/products");     // axios("/products") sends a request to get data from the /products endpoint (URL). ,, await tells JavaScript to wait until the data is received before moving to the next line.,,,, data holds the actual product information.
+//             setproducts(data);                         // now the products will hold the data of products coming from axios
+//         } catch (error) {
 
-        console.log(error)
+//         console.log(error)
             
-        }
-    }
+//         }
+//     }
 
-
-useEffect(()=>{
-    getproducts();
+//     console.log(products);
+// useEffect(()=>{
+//     getproducts();
    
-},[])
+// },[])
+
+
 
     return (
     <productcontext.Provider value={[products,setproducts]}> 
